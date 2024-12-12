@@ -1,0 +1,60 @@
+<!-- templates/haircut.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
+</head>
+
+<body class="third">
+    <div class="nav">
+        <a href="{{ url_for('home') }}" class="Home">
+            <li>Home</li>
+        </a>
+        <li>About Us</li>
+        <li>
+            <select name="Services" id="services-dropdown" onchange="navigateToPage()">
+                <option value="">Services</option>
+                <option value="{{ url_for('haircut') }}">Long HairCut - ₹150</option>
+                <option value="{{url_for('short_haircut')}}">Short Haircut - ₹150</option>
+                <option value="{{ url_for('beard_lineup') }}">Beard Lineup - ₹100</option>
+                <option value="{{ url_for('haircolor') }}">Hair Color  - ₹140</option>
+            </select>
+        </li>
+        <button class="book1" onclick="navigateToBookAppointment()">Book Appointment</button>
+    </div>
+    <h1 class="beardpage">HairCut</h1>
+    <li class="l">
+        Cut and Hair Care,
+        Shampoo & Conditioning,
+        Head Massage
+    </li>
+    <button class="book3" onclick="navigateToBookAppointment()">Book Appointment</button>
+    <footer>
+        <h1>Mens Haircuts</h1>
+        If you’re looking for a haircut in Innisfil you’ve come to the right place. We offer all men’s styles at a
+        reasonable price.<br>
+        We are open Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, and Sunday.<br>
+        Monday to Saturday our opening hours are 8am – 8pm.<br>
+        Our Sunday hours are 10am – 2pm.<br>
+    </footer>
+    <script>
+        function navigateToPage() {
+            const dropdown = document.getElementById('services-dropdown');
+            const selectedPage = dropdown.value;
+            if (selectedPage) {
+                window.location.href = selectedPage;
+            }
+        }
+
+        function navigateToBookAppointment() {
+            const bookAppointmentURL = "{{ url_for('book_appointment') }}";
+            window.location.href = bookAppointmentURL;
+        }
+    </script>
+</body>
+
+</html>

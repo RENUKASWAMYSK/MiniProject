@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Appointment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Edit Appointment</h1>
+    <form action="{{ url_for('edit_appointment', appointment_id=appointment._id) }}" method="post">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" value="{{ appointment.name }}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ appointment.email }}" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" value="{{ appointment.phone }}" required>
+
+        <label for="service">Select Service:</label>
+        <select id="service" name="service" required>
+            <option value="long_haircut" {% if appointment.service == 'long_haircut' %}selected{% endif %}>Long Haircut</option>
+            <option value="short_haircut" {% if appointment.service == 'short_haircut' %}selected{% endif %}>Short Haircut</option>
+            <option value="beard_trim" {% if appointment.service == 'beard_trim' %}selected{% endif %}>Beard Trim</option>
+            <option value="hair_color" {% if appointment.service == 'haircolor' %}selected{% endif %}>Hair Coloring</option>
+        </select>
+
+        <label for="date">Preferred Date:</label>
+        <input type="date" id="date" name="date" value="{{ appointment.date }}" required>
+
+        <label for="time">Preferred Time:</label>
+        <input type="time" id="time" name="time" value="{{ appointment.time }}" required>
+
+        <button type="submit">Update Appointment</button>
+    </form>
+</body>
+</html>

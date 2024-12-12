@@ -1,0 +1,44 @@
+<!-- templates/hair_color.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
+</head>
+
+<body class="fourth">
+    <div class="nav">
+        <a href="{{ url_for('home') }}" class="Home"><li>Home</li></a>
+        <li>About Us</li>
+        <li>
+            <select name="Services" id="services-dropdown" onchange="navigateToPage()">
+                <option value="">Services</option>
+                <option value="{{ url_for('haircut') }}">Long HairCut - ₹150</option>
+                <option value="{{url_for('short_haircut')}}">Short Haircut - ₹150</option>
+                <option value="{{ url_for('beard_lineup') }}">Beard Lineup - ₹100</option>
+                <option value="{{ url_for('haircolor') }}">Hair Color  - ₹140</option>
+            </select>
+        </li>
+        <button class="book" onclick="navigateToBookAppointment()">Book Appointment</button>
+    </div>
+    <h1 class="beardpage">Hair Color</h1>
+    <button class="book3" onclick="navigateToBookAppointment()">Book Appointment</button>
+    <img src="{{ url_for('static', filename='images/hairclr.jpg') }}" alt="Hair Color" class="image">
+    <script>
+        function navigateToPage() {
+            const dropdown = document.getElementById('services-dropdown');
+            const selectedPage = dropdown.value;
+            if (selectedPage) {
+                window.location.href = selectedPage;
+            }
+        }
+
+        function navigateToBookAppointment() {
+            const bookAppointmentURL = "{{ url_for('book_appointment') }}";
+            window.location.href = bookAppointmentURL;
+        }
+    </script>
+</body>
+</html>
